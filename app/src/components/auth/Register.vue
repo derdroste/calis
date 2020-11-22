@@ -105,8 +105,14 @@
                 try {
                     let response = await this.$http.post("/api/users", this.register);
                     let token = response.headers['x-auth-token'];
+                    this.$store.commit('user/setInformation', {
+                        id: response.data._id,
+                        name: response.data.name,
+                        email: response.data.email
+                    });
                     if (token) {
                         localStorage.setItem("jwt", token);
+                        this.$store.commit('user/isLoggedIn', true);
                         this.$router.push("/");
                     } else {
                         this.errorText = 'Email is already in use.';

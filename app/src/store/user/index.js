@@ -1,11 +1,27 @@
 export default {
     namespaced: true,
     state: {
-        email: ''
+        isLoggedIn: false,
+        information: {
+            id: '',
+            email: '',
+            name: ''
+        }
     },
     mutations: {
-        setEmail(state, payload) {
-            state.email = payload;
+        resetUser(state) {
+            state.isLoggedIn = false;
+            state.information = {
+                id: '',
+                email: '',
+                name: ''
+            }
+        },
+        isLoggedIn(state, payload) {
+            state.isLoggedIn = payload;
+        },
+        setInformation(state, payload) {
+            state.information = payload;
         }
     },
     actions: { },

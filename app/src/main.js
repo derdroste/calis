@@ -4,9 +4,10 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import axios from 'axios'
+import './registerServiceWorker'
 
 const base = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'http://192.168.178.23:3000/'
 });
 Vue.config.productionTip = false
 

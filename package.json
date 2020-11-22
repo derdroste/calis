@@ -5,7 +5,7 @@
   "main": "calis.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "&& node calis.js",
+    "run": " && node calis.js",
     "watch": " && nodemon calis.js"
   },
   "repository": {

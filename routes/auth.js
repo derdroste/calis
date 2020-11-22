@@ -3,6 +3,7 @@ const router = express.Router();
 const {User} = require('../models/user');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const pick = require('lodash/pick');
 
 router.post('/', async (req, res) => {
     const {error} = validate(req.body);
@@ -15,7 +16,8 @@ router.post('/', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
     const token = user.generateAuthToken();
-    res.send(token);
+    const userInformation = pick(user, ['_id', 'name', 'email']);
+    res.send({token: token, userInformation: userInformation});
 });
 
 function validate(req) {

@@ -6,7 +6,7 @@
         }"
         max-width="600"
         outlined
-        class="leaf mx-auto my-4 px-8 py-8"
+        class="leaf mx-auto my-4 px-6 py-4"
         shaped
     >
         <slot></slot>
@@ -19,6 +19,7 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .leaf {
+    }
 </style>

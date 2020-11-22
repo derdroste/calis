@@ -3,26 +3,7 @@
       :style="{background: $vuetify.theme.themes.light.ocean}"
       class="calis"
   >
-    <v-app-bar
-      app
-      color="wood"
-      :collapse="!collapseOnScroll"
-      :collapse-on-scroll="collapseOnScroll"
-    >
-      <img class="calis-logo" src="./assets/calis.svg" alt="calis" />
-
-      <v-spacer></v-spacer>
-
-      <v-avatar
-              size="30"
-              color="gold"
-      >
-        <v-icon light>
-          mdi-account-circle
-        </v-icon>
-      </v-avatar>
-    </v-app-bar>
-
+    <app-bar></app-bar>
     <v-main>
       <transition
               name="fade"
@@ -34,16 +15,17 @@
          <router-view />
       </transition>
     </v-main>
+    <bottom-bar/>
   </v-app>
 </template>
 
 <script>
 
+import BottomBar from "./components/ui-components/BottomBar";
+import AppBar from "./components/ui-components/AppBar";
 export default {
   name: 'App',
-  data: () => ({
-    collapseOnScroll: true,
-  }),
+  components: {AppBar, BottomBar},
   methods: {
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
@@ -59,12 +41,15 @@ export default {
     },
     afterEnter(element) {
       element.style.height = 'auto';
-    },
+    }
   }
 };
 </script>
 
 <style lang="scss">
+  @import './assets/fonts/material-design-icons.css';
+  @import 'assets/fonts/roboto.css';
+
   :root {
     --gold: #ffdabb;
     --sunlight: #E06513;
@@ -95,7 +80,7 @@ export default {
         }
 
         .error--text {
-          color: var(--sky) !important;
+          color: var(--gold) !important;
         }
       }
 
@@ -108,35 +93,44 @@ export default {
   .leaf {
     &.theme--light.v-card {
       color: rgba(0,0,0,0.87);
+
+      .v-card__title {
+        color: var(--gold);
+      }
     }
     .theme--light.v-btn {
       color: var(--forest);
+    }
+
+    .v-card__text {
+      font-weight: 600 !important;
+      color: rgba(0,0,0,0.7) !important;
     }
   }
 
   .leaf-input {
     &.theme--light.v-input {
-      color: var(--gold) !important;
+      color: rgba(0,0,0,0.87) !important;
     }
     .theme--light.v-label {
-      color: var(--gold) !important;
+      color: rgba(0,0,0,0.87) !important;
     }
     .theme--light.v-label.v-label--active {
-      color: var(--gold) !important;
+      color: rgba(0,0,0,0.87) !important;
     }
     &.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-      border-color: var(--gold) !important;
+      border-color: rgba(0,0,0,0.87) !important;
     }
     &.theme--light.v-text-field:not(.v-input--has-state):hover > .v-input__control > .v-input__slot:before {
-      border-color: var(--gold) !important;
+      border-color: rgba(0,0,0,0.87) !important;
     }
     &.theme--light.v-input input, .theme--light.v-input textarea {
-      color: var(--gold) !important;
+      color: rgba(0,0,0,0.87) !important;
     }
 
     &.error--text {
       &.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-        border-color: var(--sky) !important;
+        border-color: var(--gold) !important;
       }
     }
   }
@@ -150,7 +144,24 @@ export default {
 
   .fade-enter,
   .fade-leave-active {
-    opacity: 0
+    opacity: 0;
   }
+
+  .v-bottom-navigation {
+    .v-btn__content {
+      color: var(--gold);
+    }
+  }
+
+  .menu-button {
+    text-decoration: none;
+    margin-left: 4px;
+    padding: 0 !important;
+  }
+
+  .v-text-field input {
+    background-color: transparent !important;
+  }
+
 
 </style>

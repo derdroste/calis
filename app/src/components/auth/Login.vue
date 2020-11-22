@@ -85,9 +85,10 @@
                 errorText: ''
             };
         },
-        mounted() {
+        mounted: function () {
             let token = localStorage.getItem("jwt");
             if (token) {
+                this.$store.commit('user/isLoggedIn', true);
                 this.$router.push("/home");
             }
         },
@@ -95,9 +96,11 @@
             async loginUser() {
                 try {
                     let response = await this.$http.post("/api/auth", this.login);
-                    let token = response.data;
+                    let token = response.data.token;
                     localStorage.setItem("jwt", token);
+                    this.$store.commit('user/setInformation', response.data.userInformation);
                     if (token) {
+                        this.$store.commit('user/isLoggedIn', true);
                         this.$router.push("/home");
                     }
                 } catch (err) {
