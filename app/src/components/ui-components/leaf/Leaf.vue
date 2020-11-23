@@ -6,7 +6,7 @@
         }"
         max-width="600"
         outlined
-        class="leaf mx-auto my-4 px-6 py-4"
+        class="leaf mx-auto my-4 px-6 py-4 mt-4"
         shaped
     >
         <slot></slot>

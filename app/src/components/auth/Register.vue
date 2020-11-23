@@ -6,6 +6,7 @@
                     @submit.prevent="registerUser"
             >
                 <v-text-field
+                        autocomplete="off"
                         type="text"
                         id="name"
                         label="Name"
@@ -15,6 +16,7 @@
                 >
                 </v-text-field>
                 <v-text-field
+                        autocomplete="off"
                         type="email"
                         id="registeremail"
                         label="Email"
@@ -24,6 +26,7 @@
                 >
                 </v-text-field>
                 <v-text-field
+                        autocomplete="off"
                         type="password"
                         id="registerpassword"
                         label="Password"
@@ -74,7 +77,7 @@
                 register: {
                     name: "",
                     email: "",
-                    password: "",
+                    password: ""
                 },
                 rules: {
                     name: [
@@ -103,12 +106,13 @@
         methods: {
             async registerUser() {
                 try {
-                    let response = await this.$http.post("/api/users", this.register);
+                    let response = await this.$http.post("/api/register", this.register);
                     let token = response.headers['x-auth-token'];
                     this.$store.commit('user/setInformation', {
                         id: response.data._id,
                         name: response.data.name,
-                        email: response.data.email
+                        email: response.data.email,
+                        image: response.data.image
                     });
                     if (token) {
                         localStorage.setItem("jwt", token);

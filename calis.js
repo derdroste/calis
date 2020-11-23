@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const users = require('./routes/users');
+const register = require('./routes/register');
 const auth = require('./routes/auth');
+const user = require('./routes/user');
 const views = require('./routes/views');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -22,11 +23,13 @@ mongoose.connect('mongodb://localhost/calis2', { useNewUrlParser: true, useUnifi
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb',extended: true}));
 app.use(express.static('public'));
 app.use('/', views);
-app.use('/api/users', users);
+app.use('/api/register', register);
 app.use('/api/auth', auth);
+app.use('/api/user', user);
 
 // Start App
 const port = process.env.PORT || 3000;

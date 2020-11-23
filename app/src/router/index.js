@@ -30,6 +30,14 @@ const routes = [
       requiresAuth: true
     },
     component: () => import("../views/Profile.vue")
+  },
+  {
+    path: "/crop",
+    name: "Crop",
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import("../views/Crop.vue")
   }
 ]
 

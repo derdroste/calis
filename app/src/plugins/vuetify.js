@@ -15,7 +15,7 @@ export default new Vuetify({
             light: {
                 sky: '#AEC6F0',
                 ocean: '#1E1C24',
-                wood: '#553C2A',
+                wood: '#cc9d7a',
                 forest: '#305339',
                 gold: '#ffdabb',
                 sunlight: '#E06513',

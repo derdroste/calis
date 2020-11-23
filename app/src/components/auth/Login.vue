@@ -6,6 +6,7 @@
                     @submit.prevent="loginUser"
             >
                 <v-text-field
+                        autocomplete="off"
                         type="text"
                         id="email"
                         label="Email"
@@ -14,6 +15,7 @@
                         :rules="rules.email"
                 />
                 <v-text-field
+                        autocomplete="off"
                         type="password"
                         id="password"
                         label="Password"
@@ -78,7 +80,7 @@
                     password: [
                         value => !!value || 'Required',
                         value => (value || '').length <= 100 || 'Max 100 characters',
-                        value => (value || '').length >= 3 || 'Min 3 characters'
+                        value => (value || '').length >= 8 || 'Min 8 characters'
                     ],
                 },
                 snackbar: false,
@@ -98,7 +100,12 @@
                     let response = await this.$http.post("/api/auth", this.login);
                     let token = response.data.token;
                     localStorage.setItem("jwt", token);
-                    this.$store.commit('user/setInformation', response.data.userInformation);
+                    this.$store.commit('user/setInformation', {
+                        _id: response.data.userInformation.id,
+                        email: response.data.userInformation.email,
+                        name: response.data.userInformation.name,
+                        image: response.data.userInformation.image
+                    });
                     if (token) {
                         this.$store.commit('user/isLoggedIn', true);
                         this.$router.push("/home");

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 
 import user from './user'
+import manipulate from './manipulate'
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
@@ -15,7 +16,8 @@ export default new Vuex.Store({
   mutations: { },
   actions: { },
   modules: {
-    user
+    user,
+    manipulate
   },
   plugins: [vuexLocal.plugin]
 })

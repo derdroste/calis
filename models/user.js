@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 3,
         maxlength: 1024
+    },
+    image: {
+        type: String,
+        required: false
     }
 });
 
@@ -36,7 +40,8 @@ function validateUser(user) {
     const schema = Joi.object({
         name: Joi.string().min(3).max(30).required(),
         email: Joi.string().min(3).max(255).required().email(),
-        password: Joi.string().min(3).max(255).required()
+        password: Joi.string().min(3).max(255).required(),
+        image: Joi.string()
     });
 
     return schema.validate(user);

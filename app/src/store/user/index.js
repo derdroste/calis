@@ -5,8 +5,9 @@ export default {
         information: {
             id: '',
             email: '',
-            name: ''
-        }
+            name: '',
+            image: null
+        },
     },
     mutations: {
         resetUser(state) {
@@ -14,7 +15,8 @@ export default {
             state.information = {
                 id: '',
                 email: '',
-                name: ''
+                name: '',
+                image: ''
             }
         },
         isLoggedIn(state, payload) {
@@ -22,6 +24,15 @@ export default {
         },
         setInformation(state, payload) {
             state.information = payload;
+        },
+        setImage(state, payload) {
+            state.information.image = payload;
+        },
+        setemail(state, payload) {
+            state.information.email = payload;
+        },
+        setname(state, payload) {
+            state.information.name = payload;
         }
     },
     actions: { },

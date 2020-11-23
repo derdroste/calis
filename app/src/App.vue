@@ -5,15 +5,9 @@
   >
     <app-bar></app-bar>
     <v-main>
-      <transition
-              name="fade"
-              mode="out-in"
-              @beforeLeave="beforeLeave"
-              @enter="enter"
-              @afterEnter="afterEnter"
-      >
+      <v-expand-transition>
          <router-view />
-      </transition>
+      </v-expand-transition>
     </v-main>
     <bottom-bar/>
   </v-app>
@@ -56,8 +50,13 @@ export default {
     --forest: #305339;
     --olive: #607d2c;
     --sky: #AEC6F0;
-    --wood: #553C2A;
+    --wood: #cc9d7a;
     --wenge: #2B1E16;
+    --ocean: #1E1C24;
+  }
+
+  .v-main {
+    margin-bottom: 60px;
   }
 
   .calis-logo {
@@ -80,19 +79,19 @@ export default {
         }
 
         .error--text {
-          color: var(--gold) !important;
+          color: var(--sunlight) !important;
         }
       }
 
       .error--text {
-        color: var(--wenge) !important;
+        color: var(--sunlight) !important;
       }
     }
   }
 
   .leaf {
     &.theme--light.v-card {
-      color: rgba(0,0,0,0.87);
+      color: var(--wood);
 
       .v-card__title {
         color: var(--gold);
@@ -103,48 +102,35 @@ export default {
     }
 
     .v-card__text {
-      font-weight: 600 !important;
-      color: rgba(0,0,0,0.7) !important;
+      color: var(--wood) !important;
     }
   }
 
   .leaf-input {
     &.theme--light.v-input {
-      color: rgba(0,0,0,0.87) !important;
+      color: var(--wood) !important;
     }
     .theme--light.v-label {
-      color: rgba(0,0,0,0.87) !important;
+      color: var(--wood) !important;
     }
     .theme--light.v-label.v-label--active {
-      color: rgba(0,0,0,0.87) !important;
+      color: var(--wood) !important;
     }
     &.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-      border-color: rgba(0,0,0,0.87) !important;
+      border-color: var(--wood) !important;
     }
     &.theme--light.v-text-field:not(.v-input--has-state):hover > .v-input__control > .v-input__slot:before {
-      border-color: rgba(0,0,0,0.87) !important;
+      border-color: var(--wood) !important;
     }
     &.theme--light.v-input input, .theme--light.v-input textarea {
-      color: rgba(0,0,0,0.87) !important;
+      color: var(--wood) !important;
     }
 
     &.error--text {
       &.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-        border-color: var(--gold) !important;
+        border-color: var(--sunlight) !important;
       }
     }
-  }
-  .fade-enter-active,
-  .fade-leave-active {
-    transition-duration: 0.3s;
-    transition-timing-function: ease;
-    transition-property: height, opacity;
-    overflow: hidden;
-  }
-
-  .fade-enter,
-  .fade-leave-active {
-    opacity: 0;
   }
 
   .v-bottom-navigation {
@@ -163,5 +149,15 @@ export default {
     background-color: transparent !important;
   }
 
+  .v-toolbar {
+    .v-btn {
+      min-width: 50px;
 
+      &:last-child {
+        min-width: 20px;
+        width: 20px;
+        margin-left: 20px;
+      }
+    }
+  }
 </style>

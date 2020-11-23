@@ -1,17 +1,18 @@
 <template>
     <v-app-bar
             app
-            color="wood"
+            color="wenge"
             :collapse="!collapseOnScroll"
             :collapse-on-scroll="collapseOnScroll"
             src="../../assets/2.jpg"
+            style="z-index: 9999"
     >
         <img class="calis-logo" src="../../assets/calis.svg" alt="calis" />
 
         <v-spacer></v-spacer>
         <v-btn color="transparent" rounded small class="menu-button"  v-if="!$store.state.user.isLoggedIn">
             <v-avatar
-                    size="30"
+                    size="28"
                     color="gold"
             >
                 <v-icon light>
@@ -22,6 +23,7 @@
         <router-link to="/profile" v-if="$store.state.user.isLoggedIn">
             <v-btn color="transparent" rounded small class="menu-button">
                 <v-avatar
+                        v-if="$store.state.user.information.image === '' || $isNil($store.state.user.information.image)"
                         size="30"
                         color="gold"
                 >
@@ -29,13 +31,19 @@
                         mdi-account-circle
                     </v-icon>
                 </v-avatar>
+                <v-avatar
+                        v-else
+                        size="36"
+                        color="gold"
+                >
+                 <v-img :src="$store.state.user.information.image"></v-img>
+                </v-avatar>
             </v-btn>
         </router-link>
         <v-menu
                 bottom
                 left
                 :close-on-content-click="true"
-                v-if="$store.state.user.isLoggedIn"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="transparent"
@@ -48,8 +56,8 @@
                 </v-btn>
             </template>
             <v-list color="gold">
-                <v-list-item  @click="logUserOut">
-                    <v-list-item-action>
+                <v-list-item :ripple="false" @click="logUserOut">
+                    <v-list-item-action :ripple="false">
                         <v-icon>mdi-account-cancel-outline</v-icon>
                     </v-list-item-action>
                     Logout
@@ -77,7 +85,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     .v-list-item__action {
         color: var(--wood);
         font-weight: 500;
@@ -85,6 +93,7 @@
 
     .v-list-item {
         .v-list-item__action {
+            color: var(--wenge);
             margin-right: 10px !important;
         }
     }

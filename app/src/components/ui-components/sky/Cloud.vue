@@ -1,12 +1,12 @@
 <template>
     <v-card
         :style="{
-        border: `thin solid ${$vuetify.theme.themes.light.sky}`
+        border: `thin solid ${$vuetify.theme.themes.light.wood}`,
+        background: $vuetify.theme.themes.light.wenge
         }"
             max-width="600"
             outlined
             class="cloud mx-auto my-4"
-            tile
     >
         <slot />
     </v-card>
@@ -20,15 +20,18 @@
 
 <style lang="scss">
     .cloud {
-        background-color: transparent !important;
 
         .v-card__title {
-            color: var(--sky);
+            color: var(--gold);
+        }
+
+        .v-card__text {
+            color: var(--wood) !important;
         }
 
         .v-list-item__title,
         .v-list-item__subtitle {
-            color: var(--sky) !important;
+            color: var(--wood) !important;
         }
 
         .v-avatar {
@@ -38,6 +41,12 @@
             @media (min-width: 772px) {
                 width: 164px !important;
                 height: 164px !important;
+            }
+        }
+
+        .v-overlay {
+            .v-btn {
+                background-color: var(--gold) !important;
             }
         }
     }
